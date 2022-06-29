@@ -9,5 +9,8 @@ export default defineConfig({
       fileName: (format) => `circle-api-client.${format === 'es' ? 'mjs' : format}`,
     },
     outDir: './dist',
+    rollupOptions: {
+      external: ['axios'],
+    },
   },
 });
