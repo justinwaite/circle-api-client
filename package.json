@@ -1,0 +1,52 @@
+{
+  "name": "circle-api-client",
+  "version": "0.0.0-semantic-release",
+  "description": "A client to access Circle APIs (https://circle.com)",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "type": "module",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
+  },
+  "scripts": {
+    "build": "vite build && tsc",
+    "test": "npm run lint -- --max-warnings=0",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "commit": "cz"
+  },
+  "keywords": [
+    "circle",
+    "usdc",
+    "payments",
+    "wallet",
+    "api",
+    "client"
+  ],
+  "author": "Justin Waite <justindwaite@gmail.com>",
+  "license": "ISC",
+  "prettier": "@justinwaite/prettier-config",
+  "devDependencies": {
+    "@justinwaite/prettier-config": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.1.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "semantic-release": "^19.0.3",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.13"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
