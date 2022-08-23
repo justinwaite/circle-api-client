@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 
+/// <reference types="vitest" />
 export default defineConfig({
   build: {
     lib: {
@@ -12,5 +13,9 @@ export default defineConfig({
     rollupOptions: {
       external: ['axios'],
     },
+  },
+  test: {
+    globals: true,
+    environment: 'node',
   },
 });
