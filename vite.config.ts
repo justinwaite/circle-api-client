@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   build: {
     lib: {
-      name: 'circle-api-client',
+      name: 'circle-client-node',
       entry: './src/index.ts',
       formats: ['cjs', 'es'],
       fileName: (format) => `index.${format === 'es' ? 'mjs' : format}`,
