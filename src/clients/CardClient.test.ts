@@ -57,16 +57,16 @@ describe('card client', () => {
   });
 
   it('should handle a card error', async () => {
-    const cardError: CircleErrorResponse = {
+    const circleError: CircleErrorResponse = {
       code: 1,
       message: faker.lorem.sentence(),
     };
 
-    const circleNock = nock(baseUrl).post('/cards').reply(400, cardError);
+    const circleNock = nock(baseUrl).post('/cards').reply(400, circleError);
 
     const client = new CircleClient(faker.datatype.uuid(), baseUrl);
 
-    await expect(() => client.card.createCard({} as never)).rejects.toThrowError(new CircleError(cardError));
+    await expect(() => client.card.createCard({} as never)).rejects.toThrowError(new CircleError(circleError));
     expect(circleNock.isDone()).toBe(true);
   });
 });

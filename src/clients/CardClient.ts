@@ -10,13 +10,13 @@ export class CardClient {
 
   constructor(private client: AxiosInstance) {}
 
-  public async createCard(params: CreateCardParams) {
+  public async createCard(params: CreateCardParams): Promise<CardSuccessResponse> {
     try {
       const response = await this.client.post<CardSuccessResponse>(CardClient.resourceBaseUrl, params);
 
       return response.data;
     } catch (e) {
-      handleError(e);
+      throw handleError(e);
     }
   }
 }

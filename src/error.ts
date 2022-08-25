@@ -17,14 +17,12 @@ export class CircleError extends Error {
   }
 }
 
-export function handleError(e: AxiosError | Error | unknown) {
-  if (e instanceof AxiosError) {
-    if (e.response) {
-      throw new CircleError(e.response.data);
-    } else if (e.request) {
-      throw new NetworkError();
-    }
+export function handleError(e: AxiosError | Error | unknown): NetworkError | CircleError | Error {
+  if (e instanceof AxiosError && e.response) {
+    return new CircleError(e.response.data);
+  } else if (e instanceof AxiosError && e.request) {
+    return new NetworkError();
   } else {
-    throw new Error('An unknown error occurred');
+    return new Error('An unknown error occurred');
   }
 }

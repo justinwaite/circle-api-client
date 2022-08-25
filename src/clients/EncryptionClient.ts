@@ -10,13 +10,13 @@ export class EncryptionClient {
 
   constructor(private readonly client: AxiosInstance) {}
 
-  public async getPublicKey() {
+  public async getPublicKey(): Promise<PublicKeyResponse> {
     try {
       const response = await this.client.get<PublicKeyResponse>(EncryptionClient.createResourceUrl(['public']));
 
       return response.data;
     } catch (e) {
-      handleError(e);
+      throw handleError(e);
     }
   }
 }
