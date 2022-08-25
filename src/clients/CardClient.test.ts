@@ -1,14 +1,13 @@
-import { CardErrorResponse, CreateCardParams } from '../circle.types';
+import { CircleErrorResponse, CreateCardParams } from '../circle.types';
 import { faker } from '@faker-js/faker';
 import any from '@travi/any';
 import nock from 'nock';
 import { CircleClient } from '../CircleClient';
-import { NetworkError } from '../error';
-import { CardError } from './CardClient';
+import { CircleError, NetworkError } from '../error';
 
 const baseUrl = 'https://api.example.com';
 
-describe('circle client', () => {
+describe('card client', () => {
   describe('createCard', () => {
     it('should create a card using the circle API', async () => {
       const params: CreateCardParams = {
@@ -58,7 +57,7 @@ describe('circle client', () => {
   });
 
   it('should handle a card error', async () => {
-    const cardError: CardErrorResponse = {
+    const cardError: CircleErrorResponse = {
       code: 1,
       message: faker.lorem.sentence(),
     };
@@ -67,7 +66,7 @@ describe('circle client', () => {
 
     const client = new CircleClient(faker.datatype.uuid(), baseUrl);
 
-    await expect(() => client.card.createCard({} as never)).rejects.toThrowError(new CardError(cardError));
+    await expect(() => client.card.createCard({} as never)).rejects.toThrowError(new CircleError(cardError));
     expect(circleNock.isDone()).toBe(true);
   });
 });

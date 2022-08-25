@@ -376,7 +376,12 @@ export interface CardSuccessResponse {
   data: Card;
 }
 
-export interface CardErrorResponse {
+export interface CircleErrorResponse {
   code: number;
   message: string;
 }
+
+export type PublicKeyResponse = {
+  keyId: string;
+  publicKey: string;
+};
