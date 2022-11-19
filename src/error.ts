@@ -1,4 +1,5 @@
-import { AxiosError } from 'axios';
+import type { AxiosError } from 'axios';
+import axios from 'axios';
 
 export class NetworkError extends Error {
   constructor() {
@@ -18,9 +19,9 @@ export class CircleError extends Error {
 }
 
 export function handleError(e: AxiosError | Error | unknown): NetworkError | CircleError | Error {
-  if (e instanceof AxiosError && e.response) {
-    return new CircleError(e.response.data);
-  } else if (e instanceof AxiosError && e.request) {
+  if (axios.isAxiosError(e) && e.response) {
+    return new CircleError(e.response.data as { code: number; message: string });
+  } else if (axios.isAxiosError(e) && e.request) {
     return new NetworkError();
   } else {
     return new Error('An unknown error occurred');
