@@ -20,7 +20,7 @@ interface PageBeforeAndPageAfter {
 }
 
 export type ValidatedPaginationParams<T extends PaginationParams> = T &
-  (T extends PageBeforeAndPageAfter ? 'Please either choose `pageBefore` or `pageAfter`.' : never);
+  (T extends PageBeforeAndPageAfter ? 'Please either choose `pageBefore` or `pageAfter`.' : T);
 
 interface Amount {
   amount: string;
