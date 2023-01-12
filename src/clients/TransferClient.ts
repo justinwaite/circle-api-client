@@ -17,10 +17,15 @@ export class TransferClient {
 
   constructor(private client: AxiosInstance) {}
 
-  async create(createTransferData: CreateTransferData): Promise<ResourceResponse<Transfer>> {
+  async create(
+    createTransferData: CreateTransferData,
+    options?: { useBusinessAccountIdentity?: boolean }
+  ): Promise<ResourceResponse<Transfer>> {
     try {
       const response = await this.client.post<ResourceResponse<Transfer>>(
-        TransferClient.resourceBaseUrl,
+        options?.useBusinessAccountIdentity
+          ? `businessAccount/${TransferClient.resourceBaseUrl}`
+          : TransferClient.resourceBaseUrl,
         createTransferData
       );
       return response.data;
